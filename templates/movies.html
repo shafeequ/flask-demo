@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sennder Application</title>
+</head>
+<style type="text/css">
+table {
+	margin: 0 auto;
+}
+
+table.one {
+	border-collapse: collapse;
+}
+
+table.two {
+	border-collapse: separate;
+}
+
+td.a {
+	border-style: dotted;
+	border-width: 1px;
+	border-color: #000000;
+	padding: 5px;
+	font-weight: bold;
+	text-align: center;
+}
+
+td.b {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #333333;
+	padding: 5px;
+}
+</style>
+
+<body>
+	<div class="one">
+		<table id="server_side_push">
+			<tr>
+				<td class="a">Movie Name</td>
+				<td class="a">Actors</td>
+			</tr>
+			<tr> {% for key, value in response.items() %}
+			<TR>
+				<TD class="b">{{ value.name|e }}</TD>
+				<TD class="b">{{ value.people|join(',') }}</TD>
+			</TR> {% endfor %} </tr>
+        <tr>
+				<td class="a">For Demo</td>
+				<td class="a">Added Extra Row</td>
+			</tr>
+
+		</table>
+	</div>
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+var server_push_messages = new EventSource('/stream');
+server_push_messages.onmessage = function(event) {
+	if(event.data) {
+		$('#server_side_push').replaceWith(event.data);
+	}
+};
+</script>
