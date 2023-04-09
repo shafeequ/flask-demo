@@ -1,5 +1,9 @@
 **Why Flask?**
 
+![Uploading image.png…]()
+
+
+
 Python has a number of web frameworks that can be used to create web apps and APIs.(Django very popular) I have
  selected Flask because Flask applications tend to be written on a blank canvas being light weight and micro framework
 suited to a contained application such as our Task for building Web-APIs and non enterprise applications**
